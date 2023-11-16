@@ -1,6 +1,6 @@
 <?php
 
-    $servername = "srv452.hstgr.io";
+    $servername = "127.0.0.1:3306";
     $username = "u242803527_sandei";
     $password = "@Cifras123";
     $dbname = "u242803527_cifras";
