@@ -19,7 +19,7 @@ function displayData(data) {
 
     data.forEach(function (user) {
         var userDiv = document.createElement('div');
-        userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.name + '<br>Email: ' + user.email + '<hr>';
+        userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path + '<hr>';
         userList.appendChild(userDiv);
     });
 }
