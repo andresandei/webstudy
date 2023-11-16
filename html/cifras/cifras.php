@@ -1,7 +1,5 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    
+
     $servername = "151.106.97.204";
     $username = "u242803527_sandei";
     $password = "@Cifras123";
@@ -13,7 +11,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, nome, path FROM users";
+    $sql = "SELECT id, nome, path FROM musicas";
     $result = $conn->query($sql);
 
     $data = [];
