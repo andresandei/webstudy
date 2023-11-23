@@ -1,25 +1,29 @@
-var popupTrigger = document.getElementById('musicList');
-var popupOverlay = document.getElementById('popupOverlay');
-var popupPanel = document.getElementById('popupPanel');
-var closeBtn = document.getElementById('closeBtn');
+document.addEventListener("readystatechange", (event) => {
+    var popupTrigger = document.getElementById('musicList');
+    var popupOverlay = document.getElementById('popupOverlay');
+    var popupPanel = document.getElementById('popupPanel');
+    var closeBtn = document.getElementById('closeBtn');
 
-popupTrigger.addEventListener('click', function () {
-    popupOverlay.style.display = 'flex';
-    popupPanel.style.display = 'block';
-});
+    popupTrigger.addEventListener('click', function () {
+        popupOverlay.style.display = 'flex';
+        popupPanel.style.display = 'block';
+    });
 
-closeBtn.addEventListener('click', function () {
-    popupOverlay.style.display = 'none';
-    popupPanel.style.display = 'none';
-});
-
-// Close the popup when clicking outside the panel
-popupOverlay.addEventListener('click', function (event) {
-    if (event.target === popupOverlay) {
+    closeBtn.addEventListener('click', function () {
         popupOverlay.style.display = 'none';
         popupPanel.style.display = 'none';
-    }
+    });
+
+    // Close the popup when clicking outside the panel
+    popupOverlay.addEventListener('click', function (event) {
+        if (event.target === popupOverlay) {
+            popupOverlay.style.display = 'none';
+            popupPanel.style.display = 'none';
+        }
+    });
 });
+
+
 
 // Initialize an empty array to store user data
 var userDataArray = [];
