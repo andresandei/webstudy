@@ -1,3 +1,13 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent scrolling when the popup is open */
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -16,6 +26,8 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px; /* Set a maximum width if needed */
     z-index: 2;
 }
 
