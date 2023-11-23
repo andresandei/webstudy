@@ -57,8 +57,10 @@ function displayData(data) {
 }
 
 
-function openPopup(path) {
-    
+function openPopup(imagePath) {
+    // Set the src attribute of the userImage element
+    userImage.src = "../../img/cifras/"+imagePath;
+
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
 }
