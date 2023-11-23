@@ -8,6 +8,10 @@ body {
     overflow: hidden; /* Prevent scrolling when the popup is open */
 }
 
+#page{
+    width: 100%;
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -27,6 +31,7 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 80%;
+    height: 55%;
     max-width: 600px; /* Set a maximum width if needed */
     z-index: 2;
 }
