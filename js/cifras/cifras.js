@@ -23,8 +23,6 @@ document.addEventListener("readystatechange", (event) => {
     });
 });
 
-
-
 // Initialize an empty array to store user data
 var userDataArray = [];
 
@@ -61,6 +59,7 @@ function displayData(data) {
 
 
 function openPopup( path) {
+    
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
 }
