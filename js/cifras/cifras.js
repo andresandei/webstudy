@@ -41,7 +41,6 @@ fetch('cifras.php')
 // Display data in the HTML
 function displayData(data) {
     var musicList = document.getElementById('musicList');
-
     data.forEach(function (user) {
         var userDiv = document.createElement('div');
         userDiv.classList.add('user-item');
@@ -58,7 +57,7 @@ function displayData(data) {
 }
 
 
-function openPopup( path) {
+function openPopup(path) {
     
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
