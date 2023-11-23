@@ -42,11 +42,25 @@ fetch('cifras.php')
 
 // Display data in the HTML
 function displayData(data) {
-    var userList = document.getElementById('musicList');
+    var musicList = document.getElementById('musicList');
 
     data.forEach(function (user) {
         var userDiv = document.createElement('div');
-        userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path + '<hr>';
-        userList.appendChild(userDiv);
+        userDiv.classList.add('user-item');
+        userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path;
+
+        // Add a click event listener to each user item
+        userDiv.addEventListener('click', function () {
+            // Call the openPopup function with user details
+            openPopup(user.path);
+        });
+
+        musicList.appendChild(userDiv);
     });
+}
+
+
+function openPopup( path) {
+    popupOverlay.style.display = 'flex';
+    popupPanel.style.display = 'block';
 }
