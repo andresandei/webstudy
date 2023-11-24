@@ -20,17 +20,18 @@ $itemTono = $_POST['itemTono'];
 
 $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
 $lastresult = $conn->query($lastsql);
+$row=mysqli_fetch_row($result)
 
 
 // Handle image upload
-$filename = "img". $lastresult . "-" . "0";
+$filename = "img". $row[0] . "-" . "0";
 $targetDir = "../../img/cifras/"; // Create an "uploads" folder in your project
 $targetFile = $targetDir . "img" . uniqid() . ".jpeg"; // Unique file name
 
 move_uploaded_file($_FILES["itemImage"][$filename], $targetFile);
 
 // Insert data into the database
-$sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$itemName', '$targetFile', '$itemTono')";
+$sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$filename', '$targetFile', '$itemTono')";
 
 if ($conn->query($sql) === TRUE) {
     $response = array("status" => "success", "message" => "Item registered successfully");
