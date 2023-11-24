@@ -80,14 +80,14 @@ function openPopup(imgs) {
 
 // Open full screen
 function openFullscreen() {
-    if (page.requestFullscreen) {
-        page.requestFullscreen();
-    } else if (page.mozRequestFullScreen) {
-        page.mozRequestFullScreen();
-    } else if (page.webkitRequestFullscreen) {
-        page.webkitRequestFullscreen();
-    } else if (page.msRequestFullscreen) {
-        page.msRequestFullscreen();
+    if (document.requestFullscreen) {
+        document.requestFullscreen();
+    } else if (document.mozRequestFullScreen) {
+        document.mozRequestFullScreen();
+    } else if (document.webkitRequestFullscreen) {
+        document.webkitRequestFullscreen();
+    } else if (document.msRequestFullscreen) {
+        document.msRequestFullscreen();
     }
 }
 
