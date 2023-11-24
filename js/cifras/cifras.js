@@ -5,20 +5,20 @@ document.addEventListener("readystatechange", (event) => {
     var closeBtn = document.getElementById('closeBtn');
 
     popupTrigger.addEventListener('click', function () {
-        openFullscreen();
+        openFullscreen(popupPanel);
         popupOverlay.style.display = 'flex';
         popupPanel.style.display = 'block';
     });
 
     closeBtn.addEventListener('click', function () {
-        closeFullscreen();
+        closeFullscreen(popupPanel);
         popupOverlay.style.display = 'none';
         popupPanel.style.display = 'none';
     });
 
     // Close the popup when clicking outside the panel
     popupOverlay.addEventListener('click', function (event) {
-        closeFullscreen();
+        closeFullscreen(popupPanel);
         if (event.target === popupOverlay) {
             popupOverlay.style.display = 'none';
             popupPanel.style.display = 'none';
@@ -78,21 +78,20 @@ function openPopup(imgs) {
     popupPanel.style.display = 'block';
 }
 
-// Open full screen
-function openFullscreen() {
-    if (page.requestFullscreen) {
-        page.requestFullscreen();
-    } else if (page.mozRequestFullScreen) {
-        page.mozRequestFullScreen();
-    } else if (page.webkitRequestFullscreen) {
-        page.webkitRequestFullscreen();
-    } else if (page.msRequestFullscreen) {
-        page.msRequestFullscreen();
+function openFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
     }
 }
 
 // Exit full screen
-function closeFullscreen() {
+function closeFullscreen(element) {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
