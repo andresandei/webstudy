@@ -54,9 +54,9 @@ body {
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 80%;
+    width: 95%;
     max-width: 600px; /* Set a maximum width if needed */
-    max-height: 80%; /* Set a maximum height for the image container */
+    max-height: 95%; /* Set a maximum height for the image container */
     overflow-y: auto; /* Enable vertical scroll if the content exceeds the height */
     z-index: 2;
     text-align: center; /* Center the images */
