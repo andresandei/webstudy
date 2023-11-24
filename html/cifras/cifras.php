@@ -11,7 +11,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT id, nome, path FROM musicas";
+    $sql = "SELECT id, nome, path, tom FROM musicas";
     $result = $conn->query($sql);
 
     $data = [];
