@@ -20,11 +20,11 @@ $itemTono = $_POST['itemTono'];
 
 $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
 $lastresult = $conn->query($lastsql);
-$row=mysqli_fetch_row($result)
+$row=mysqli_fetch_row($lastresult)
 
 
 // Handle image upload
-$filename = "img". $lastresult['id'] . "-" . "0";
+$filename = "img". $row[0] . "-" . "0";
 $targetDir = "../../img/cifras/"; // Create an "uploads" folder in your project
 $targetFile = $targetDir . "img" . uniqid() . ".jpeg"; // Unique file name
 
