@@ -29,7 +29,7 @@ $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
 $target_file = $target_dir . basename($itemImage['name']);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 $filenameR = "img" . $summed . "-" . "0." . $imageFileType;
-$targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
+$targetFile = $target_dir . $filenameR; // Unique file name
 $uploadOk = 1;
 
 // Check if image file is a actual image or fake image
@@ -61,7 +61,7 @@ if (!in_array($imageFileType, $allowedFormats)) {
 if ($uploadOk == 0) {
     $response = array("status" => "error", "message" => "Sorry, your file was not uploaded.");
 } else {
-    if (move_uploaded_file($itemImage $filenameR, $targetFile)) {
+    if (move_uploaded_file($itemImage['tmp_name'], $targetFile)) {
         // File uploaded successfully
         $response = array("status" => "success", "message" => "The file " . basename($itemImage['name']) . " has been uploaded.");
     } else {
