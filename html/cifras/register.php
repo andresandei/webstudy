@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 
 // Handle form data
 $itemName = $_POST['itemName'];
+$itemImage = $_POST['itemImage'];
 $itemTono = $_POST['itemTono'];
 
 $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
@@ -25,16 +26,17 @@ $row=mysqli_fetch_row($lastresult);
 
 // Handle image upload
 $summed = $row[0]+1;
-$filenameR = "img". $summed . "-" . "0";
 $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
-$targetFile = $targetDir . $filenameR . ".jpeg"; // Unique file name
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
+$target_file = $target_dir . basename($_FILES[$itemImage][$filenameR]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$filenameR = "img". $summed . "-" . "0" . $imageFileType;
+
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  $check = getimagesize($_FILES[$itemImage][$filenameR]);
   if($check !== false) {
     echo "File is an image - " . $check["mime"] . ".";
     $uploadOk = 1;
@@ -68,7 +70,7 @@ if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+  if (move_uploaded_file($_FILES[$itemImage][$filenameR], $target_file)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
   } else {
     echo "Sorry, there was an error uploading your file.";
