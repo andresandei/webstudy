@@ -24,7 +24,7 @@ $row=mysqli_fetch_row($result)
 
 
 // Handle image upload
-$fileName = "img". $row[0] . "-" . "0";
+$fileName = "img". $lastresult['id'] . "-" . "0";
 $targetDir = "../../img/cifras/"; // Create an "uploads" folder in your project
 $targetFile = $targetDir . "img" . uniqid() . ".jpeg"; // Unique file name
 
