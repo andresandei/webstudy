@@ -5,17 +5,20 @@ document.addEventListener("readystatechange", (event) => {
     var closeBtn = document.getElementById('closeBtn');
 
     popupTrigger.addEventListener('click', function () {
+        openFullscreen();
         popupOverlay.style.display = 'flex';
         popupPanel.style.display = 'block';
     });
 
     closeBtn.addEventListener('click', function () {
+        closeFullscreen();
         popupOverlay.style.display = 'none';
         popupPanel.style.display = 'none';
     });
 
     // Close the popup when clicking outside the panel
     popupOverlay.addEventListener('click', function (event) {
+        closeFullscreen();
         if (event.target === popupOverlay) {
             popupOverlay.style.display = 'none';
             popupPanel.style.display = 'none';
@@ -57,9 +60,6 @@ function displayData(data) {
     });
 }
 
-
-
-
 function openPopup(imgs) {
     // Clear previous images
     userImageContainer.innerHTML = '';
@@ -76,4 +76,30 @@ function openPopup(imgs) {
 
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
+}
+
+// Open full screen
+function openFullscreen() {
+    if (page.requestFullscreen) {
+        page.requestFullscreen();
+    } else if (page.mozRequestFullScreen) {
+        page.mozRequestFullScreen();
+    } else if (page.webkitRequestFullscreen) {
+        page.webkitRequestFullscreen();
+    } else if (page.msRequestFullscreen) {
+        page.msRequestFullscreen();
+    }
+}
+
+// Exit full screen
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
 }
