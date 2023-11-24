@@ -18,17 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             body: formData
         })
-        .then(response => {
-            console.log(response);  // Log the entire response including headers
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.text()) // Convert response to text
         .then(data => {
-            console.log(data);  // Log the JSON data
-            // Handle the response from the server
+            console.log(data);  // Log the raw response text
+
+            try {
+                // Try to parse the response as JSON
+                var jsonData = JSON.parse(data);
+                console.log(jsonData);  // Log the parsed JSON data
+
+                // Handle the response from the server
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+            }
         })
         .catch(error => console.error('Error:', error));
     });
