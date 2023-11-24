@@ -59,16 +59,16 @@ if (!in_array($imageFileType, $allowedFormats)) {
 }
 
 if ($uploadOk == 0) {
-    echo json_encode(array("status" => "error", "message" => "Sorry, your file was not uploaded."));
-  } else {
+    $response = array("status" => "error", "message" => "Sorry, your file was not uploaded.");
+} else {
     if (move_uploaded_file($itemImage['tmp_name'], $targetFile)) {
-      // File uploaded successfully
-      echo json_encode(array("status" => "success", "message" => "The file " . basename($itemImage['name']) . " has been uploaded."));
+        // File uploaded successfully
+        $response = array("status" => "success", "message" => "The file " . basename($itemImage['name']) . " has been uploaded.");
     } else {
-      // Error uploading file
-      echo json_encode(array("status" => "error", "message" => "Sorry, there was an error uploading your file."));
+        // Error uploading file
+        $response = array("status" => "error", "message" => "Sorry, there was an error uploading your file.");
     }
-  }
+}
 
 // Insert data into the database
 $sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$itemName', '$filenameR', '$itemTono')";
