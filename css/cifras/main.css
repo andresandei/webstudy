@@ -71,7 +71,13 @@ body {
     color: #fff; /* Text color */
     background-color: #333; /* Background color */
     border-radius: 50%; /* Rounded corners */
-    padding: 8px 12px; /* Padding for better spacing */
+    padding: 8px; /* Padding for better spacing */
+    width: 32px; /* Fixed width */
+    height: 32px; /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff; /* Border for visibility */
 }
 
 .user-image-container {
