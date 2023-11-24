@@ -10,7 +10,7 @@
 <body>
     <div id="registrationContainer">
         <h2>Register New Item</h2>
-        <form id="registrationForm">
+        <form id="registrationForm" action="register.php" method="post" enctype="multipart/form-data">
             <label for="itemName">Item Name:</label>
             <input type="text" id="itemName" name="itemName" required>
 
@@ -20,10 +20,8 @@
             <label for="itemTono">Item Tono:</label>
             <input type="text" id="itemTono" name="itemTono" required>
 
-            <button type="button" id="registerButton">Register Item</button>
+            <button type="submit" id="registerButton">Register Item</button>
         </form>
     </div>
-
-    
 </body>
 </html>

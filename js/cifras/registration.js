@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("registerButton").addEventListener("click", function () {
+    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
         // Get form data
         var itemName = document.getElementById("itemName").value;
         var itemImage = document.getElementById("itemImage").files[0]; // File input
@@ -16,7 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             // Handle the response from the server
             console.log(data);
