@@ -3,7 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align content to the top */
     justify-content: center;
     overflow: hidden; /* Prevent scrolling when the popup is open */
     flex-direction: column; /* Align elements vertically */
@@ -22,6 +22,20 @@ body {
 #musicList {
     width: 100%;
     margin-top: 20px; /* Add some space below the title */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-around; /* Distribute items horizontally with space around */
+    align-items: flex-start; /* Align items to the top */
+}
+
+.music-item {
+    width: 200px;
+    padding: 15px;
+    margin: 10px;
+    background-color: #f9f9f9; /* Background color for each item */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .overlay {
