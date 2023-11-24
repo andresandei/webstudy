@@ -6,14 +6,22 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Prevent scrolling when the popup is open */
+    flex-direction: column; /* Align elements vertically */
 }
 
-#page{
+#page {
     width: 100%;
+    background-color: #333; /* Dark background color for emphasis */
+    color: white; /* Text color for emphasis */
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 3; /* Ensure the title is on top of other elements */
 }
 
-#musicList{
+#musicList {
     width: 100%;
+    margin-top: 20px; /* Add some space below the title */
 }
 
 .overlay {
@@ -52,13 +60,13 @@ body {
 
 .user-image-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column; /* Align images vertically */
+    align-items: center; /* Center images horizontally */
     margin-top: 10px;
 }
 
 .user-image {
-    max-width: 48%; /* Adjust as needed to leave some space between images */
+    max-width: 100%; /* Adjust the width to fit within the container */
     border-radius: 5px; /* Optional: Add border-radius for a rounded image */
     margin-bottom: 10px;
 }
