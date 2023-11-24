@@ -23,13 +23,12 @@ body {
     width: 100%;
     margin-top: 20px; /* Add some space below the title */
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: space-around; /* Distribute items horizontally with space around */
-    align-items: flex-start; /* Align items to the top */
+    flex-direction: column; /* Display items vertically */
+    align-items: center; /* Center items horizontally */
 }
 
 .music-item {
-    width: 200px;
+    width: 300px;
     padding: 15px;
     margin: 10px;
     background-color: #f9f9f9; /* Background color for each item */
