@@ -60,10 +60,10 @@ function displayData(data) {
 
 
 
-function openPopup(imagePath) {
+function openPopup(imgs) {
     // Clear previous images
     userImageContainer.innerHTML = '';
-    let imgsArr = user.path.split("*");
+    let imgsArr = imgs.split("*");
 
     // Create img elements for each image path
     imgsArr.forEach(function (imagePath) {

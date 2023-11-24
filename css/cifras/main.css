@@ -3,7 +3,6 @@ body {
     font-family: 'Arial', sans-serif;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Prevent scrolling when the popup is open */
