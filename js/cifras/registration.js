@@ -19,15 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
             body: formData
         })
         .then(response => {
+            console.log(response);  // Log the entire response including headers
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json();
         })
         .then(data => {
+            console.log(data);  // Log the JSON data
             // Handle the response from the server
-            console.log(data);
-            // You can add further logic based on the server response
         })
         .catch(error => console.error('Error:', error));
     });
