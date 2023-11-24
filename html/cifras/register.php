@@ -28,7 +28,7 @@ $summed = $row[0] + 1;
 $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
 $target_file = $target_dir . basename($itemImage['name']);
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-$filenameR = "img" . $summed . "-" . "0" . $imageFileType;
+$filenameR = "img" . $summed . "-" . "0." . $imageFileType;
 $targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
 $uploadOk = 1;
 
