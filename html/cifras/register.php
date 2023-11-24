@@ -27,11 +27,11 @@ $row=mysqli_fetch_row($lastresult);
 // Handle image upload
 $summed = $row[0]+1;
 $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
+$filenameR = "img". $summed . "-" . "0" . $imageFileType;
+$targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
 $target_file = $target_dir . basename($_FILES[$itemImage][$filenameR]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$filenameR = "img". $summed . "-" . "0" . $imageFileType;
-$targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
 
 
 
