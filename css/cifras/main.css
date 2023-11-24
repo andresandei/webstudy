@@ -4,7 +4,7 @@ body {
     height: 100vh;
     display: flex;
     align-items: flex-start; /* Align content to the top */
-    justify-content: center;
+    /*justify-content: center;*/
     overflow: hidden; /* Prevent scrolling when the popup is open */
     flex-direction: column; /* Align elements vertically */
 }
