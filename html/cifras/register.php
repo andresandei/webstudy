@@ -20,7 +20,7 @@ $itemTono = $_POST['itemTono'];
 
 $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
 $lastresult = $conn->query($lastsql);
-$row=mysqli_fetch_row($lastresult)
+$row=mysqli_fetch_row($lastresult);
 
 
 // Handle image upload
