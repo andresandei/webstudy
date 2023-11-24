@@ -32,7 +32,7 @@ $targetFile = $targetDir . $filenameR . ".jpeg"; // Unique file name
 move_uploaded_file($_FILES["itemImage"][$filename], $targetFile);
 
 // Insert data into the database
-$sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$filename', '$targetFile', '$itemTono')";
+$sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$filenameR', '$targetFile', '$itemTono')";
 
 if ($conn->query($sql) === TRUE) {
     $response = array("status" => "success", "message" => "Item registered successfully");
