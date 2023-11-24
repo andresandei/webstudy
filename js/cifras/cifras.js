@@ -80,14 +80,14 @@ function openPopup(imgs) {
 
 // Open full screen
 function openFullscreen() {
-    if (popupTrigger.requestFullscreen) {
-        popupTrigger.requestFullscreen();
-    } else if (popupTrigger.mozRequestFullScreen) {
-        popupTrigger.mozRequestFullScreen();
-    } else if (popupTrigger.webkitRequestFullscreen) {
-        popupTrigger.webkitRequestFullscreen();
-    } else if (popupTrigger.msRequestFullscreen) {
-        popupTrigger.msRequestFullscreen();
+    if (page.requestFullscreen) {
+        page.requestFullscreen();
+    } else if (page.mozRequestFullScreen) {
+        page.mozRequestFullScreen();
+    } else if (page.webkitRequestFullscreen) {
+        page.webkitRequestFullscreen();
+    } else if (page.msRequestFullscreen) {
+        page.msRequestFullscreen();
     }
 }
 

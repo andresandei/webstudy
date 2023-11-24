@@ -9,7 +9,7 @@ body {
     flex-direction: column; /* Align elements vertically */
 }
 
-#page {
+#titulo {
     width: 100%;
     background-color: #333; /* Dark background color for emphasis */
     color: white; /* Text color for emphasis */
