@@ -42,6 +42,7 @@ fetch('cifras.php')
 function displayData(data) {
     var musicList = document.getElementById('musicList');
     data.forEach(function (user) {
+        
         var userDiv = document.createElement('div');
         userDiv.classList.add('user-item');
         userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path;
@@ -57,9 +58,21 @@ function displayData(data) {
 }
 
 
+
+
 function openPopup(imagePath) {
-    // Set the src attribute of the userImage element
-    userImage.src = "../../img/cifras/"+imagePath;
+    // Clear previous images
+    userImageContainer.innerHTML = '';
+    let imgsArr = user.path.split("*");
+
+    // Create img elements for each image path
+    imgsArr.forEach(function (imagePath) {
+        
+        var img = document.createElement('img');
+        img.classList.add('user-image');
+        img.src = "../../img/cifras/"+imagePath;
+        userImageContainer.appendChild(img);
+    });
 
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
