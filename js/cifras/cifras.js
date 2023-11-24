@@ -44,7 +44,7 @@ function displayData(data) {
     data.forEach(function (user) {
         
         var userDiv = document.createElement('div');
-        userDiv.classList.add('user-item');
+        userDiv.classList.add('music-item');
         userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path;
 
         // Add a click event listener to each user item
