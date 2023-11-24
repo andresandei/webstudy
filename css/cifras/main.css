@@ -16,7 +16,7 @@ body {
     text-align: center;
     padding: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 3; /* Ensure the title is on top of other elements */
+    z-index: 0; 
 }
 
 #musicList {
@@ -67,9 +67,11 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 24px; /* Increased font size */
-    color: #ff5733; /* Different color, you can change this to your preferred color */
-    font-weight: bold; /* Make the text bold for better visibility */
+    font-size: 18px;
+    color: #fff; /* Text color */
+    background-color: #333; /* Background color */
+    border-radius: 50%; /* Rounded corners */
+    padding: 8px 12px; /* Padding for better spacing */
 }
 
 .user-image-container {
