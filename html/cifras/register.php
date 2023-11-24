@@ -61,7 +61,7 @@ if (!in_array($imageFileType, $allowedFormats)) {
 if ($uploadOk == 0) {
     $response = array("status" => "error", "message" => "Sorry, your file was not uploaded.");
 } else {
-    if (move_uploaded_file($itemImage['tmp_name'], $targetFile)) {
+    if (move_uploaded_file($itemImage $filenameR, $targetFile)) {
         // File uploaded successfully
         $response = array("status" => "success", "message" => "The file " . basename($itemImage['name']) . " has been uploaded.");
     } else {
