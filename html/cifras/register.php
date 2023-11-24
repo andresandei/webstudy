@@ -26,7 +26,7 @@ $row=mysqli_fetch_row($lastresult);
 // Handle image upload
 $filenameR = "img". $row[0] . "-" . "0";
 $targetDir = "../../img/cifras/"; // Create an "uploads" folder in your project
-$targetFile = $targetDir . filenameR . ".jpeg"; // Unique file name
+$targetFile = $targetDir . $filenameR . ".jpeg"; // Unique file name
 
 move_uploaded_file($_FILES["itemImage"][$filename], $targetFile);
 
