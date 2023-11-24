@@ -58,7 +58,7 @@ body {
     max-width: 600px; /* Set a maximum width if needed */
     max-height: 95%; /* Set a maximum height for the image container */
     overflow-y: auto; /* Enable vertical scroll if the content exceeds the height */
-    z-index: 2;
+    z-index: 10;
     text-align: center; /* Center the images */
 }
 
@@ -67,8 +67,9 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 20px;
-    color: #333;
+    font-size: 24px; /* Increased font size */
+    color: #ff5733; /* Different color, you can change this to your preferred color */
+    font-weight: bold; /* Make the text bold for better visibility */
 }
 
 .user-image-container {
