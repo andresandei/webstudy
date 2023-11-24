@@ -27,7 +27,7 @@ $row=mysqli_fetch_row($lastresult);
 // Handle image upload
 $summed = $row[0]+1;
 $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
-$target_file = $target_dir . basename($_FILES['itemImage']['itemName']);
+$target_file = $target_dir . basename($_FILES['itemImage']['name']);
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $filenameR = "img". $summed . "-" . "0" . $imageFileType;
 $targetFile = $target_dir . $filenameR . ".jpeg"; // Unique file name
@@ -37,7 +37,7 @@ $uploadOk = 1;
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES['itemImage']['itemName']);
+  $check = getimagesize($_FILES['itemImage']['tmp_name']);
   if($check !== false) {
     echo "File is an image - " . $check["mime"] . ".";
     $uploadOk = 1;
