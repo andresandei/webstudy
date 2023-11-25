@@ -70,6 +70,10 @@ function displayNotification(status, message) {
         notificationContainer.classList.add('processing');
     }
 
-    // Display the notification
-    notificationContainer.style.display = 'block';
+    notificationContainer.style.display = 'flex'; // Use flex display
+
+    // Center the notification vertically
+    notificationContainer.style.flexDirection = 'column';
+    notificationContainer.style.justifyContent = 'center';
+    notificationContainer.style.alignItems = 'center';
 }
