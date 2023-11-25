@@ -23,11 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(data);  // Log the raw response text
 
             try {
-                // Try to parse the response as JSON
                 var jsonData = JSON.parse(data);
-                console.log(jsonData);  // Log the parsed JSON data
-
-                // Display the full-screen notification
+        
+                // Display the notification
                 displayNotification(jsonData.status, jsonData.message);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
@@ -39,21 +37,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function displayNotification(status, message) {
     var notificationContainer = document.getElementById('notificationContainer');
-    var notificationMessage = document.getElementById('notificationMessage');
+    var notificationContent = document.getElementById('notificationContent');
+    var okButton = document.getElementById('okButton');
 
     // Set the content and style based on the status
-    notificationMessage.innerHTML = message;
+    notificationContent.innerHTML = message;
+    notificationContainer.className = ''; // Clear existing classes
+
+    if (status === 'success') {
+        notificationContainer.classList.add('success');
+    } else if (status === 'error') {
+        notificationContainer.classList.add('error');
+    }
 
     // Display the notification
-    notificationContainer.classList.remove('hidden');
+    notificationContainer.style.display = 'flex'; // Change to 'block' if you prefer
+    document.body.style.overflow = 'hidden'; // Prevent scrolling behind the notification
 
-    // Focus on the OK button for accessibility
-    document.getElementById('okButton').focus();
+    // Attach event listener to the OK button
+    okButton.addEventListener('click', function () {
+        closeNotification(notificationContainer);
+    });
 }
 
-function returnToListPage() {
-    // Redirect to the list page (adjust the URL as needed)
-    window.location.href = 'list-page.html';
+function closeNotification(notificationContainer) {
+    // Hide the notification
+    notificationContainer.style.display = 'none';
+    document.body.style.overflow = ''; // Restore scrolling
 }
 
 //TODO: Make a feedback of the registering process
