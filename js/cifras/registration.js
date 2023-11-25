@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         var itemImage = document.getElementById("itemImage").files[0]; // File input
         var itemTono = document.getElementById("itemTono").value;
 
+        // Check if image type is allowed
+        if (!isImageTypeAllowed(itemImage)) {
+            displayNotification("error", "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+            return; // Stop further processing
+        }
+
         // Create FormData object to send files
         var formData = new FormData();
         formData.append("itemName", itemName);
@@ -52,28 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('notificationContainer').style.display = 'none';
         // You can add any additional logic here, such as redirecting to the list page
     });
-});
 
-function displayNotification(status, message) {
-    var notificationContainer = document.getElementById('notificationContainer');
-    var notificationContent = document.getElementById('notificationContent');
-
-    // Set the content and style based on the status
-    notificationContent.innerHTML = message;
-    notificationContainer.className = ''; // Clear existing classes
-
-    if (status === 'success') {
-        notificationContainer.classList.add('success');
-    } else if (status === 'error') {
-        notificationContainer.classList.add('error');
-    } else if (status === 'processing') {
-        notificationContainer.classList.add('processing');
+    // Function to check if the image type is allowed
+    function isImageTypeAllowed(file) {
+        var allowedFormats = ["jpg", "jpeg", "png", "gif"];
+        var imageFileType = file.name.split('.').pop().toLowerCase();
+        return allowedFormats.includes(imageFileType);
     }
-
-    notificationContainer.style.display = 'flex'; // Use flex display
-
-    // Center the notification vertically
-    notificationContainer.style.flexDirection = 'column';
-    notificationContainer.style.justifyContent = 'center';
-    notificationContainer.style.alignItems = 'center';
-}
+});
