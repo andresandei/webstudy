@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("itemImage", itemImage);
         formData.append("itemTono", itemTono);
 
+        // Display "Cadastrando..." message immediately
+        displayNotification("processing", "Cadastrando...");
+
         // Use fetch to send data to the server
         fetch("register.php", {
             method: "POST",
@@ -23,13 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 var jsonData = JSON.parse(data);
         
-                // Display the notification immediately after clicking Register
-                displayNotification(jsonData.status, "Cadastrando...");
-
-                // If successful, update the notification content and style
-                if (jsonData.status === 'success') {
-                    displayNotification(jsonData.status, jsonData.message);
-                }
+                // Update the notification content and style based on the status
+                displayNotification(jsonData.status, jsonData.message);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
             }
