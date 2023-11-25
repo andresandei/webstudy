@@ -74,7 +74,7 @@ if ($uploadOk == 0) {
 $sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$itemName', '$filenameR', '$itemTono')";
 
 if ($conn->query($sql) === TRUE) {
-    $response = array("status" => "successo", "message" => "Item registered successfully");
+    $response = array("status" => "success", "message" => "Item registered successfully");
 } else {
     $response = array("status" => "error", "message" => "Error: " . $sql . "<br>" . $conn->error);
 }
