@@ -35,3 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error('Error:', error));
     });
 });
+
+//TODO: Make a feedback of the registering process
+//TODO: Make a way to add more than 1 image
+//TODO: Make to delete a song from the list?
