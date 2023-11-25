@@ -3,14 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     var registerButton = document.getElementById("registerButton");
     var okButton = document.getElementById("okButton");
 
-    // Hide the Register button during processing
-    registerButton.style.display = 'none';
-
     registrationForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        // Hide the Register button during processing
-        registerButton.style.display = 'none';
+        // Hide the OK button during processing
+        okButton.style.display = 'none';
 
         // Get form data
         var itemName = document.getElementById("itemName").value;
@@ -39,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Update the notification content and style based on the status
                 displayNotification(jsonData.status, jsonData.message);
 
-                // If successful, hide the OK button and show the Register button again
+                // If successful, show the OK button again
                 if (jsonData.status === 'success') {
                     okButton.style.display = 'block';
                 }
@@ -50,11 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error('Error:', error));
     });
 
-    // OK button click event to hide the notification and show the Register button
+    // OK button click event to hide the notification
     okButton.addEventListener("click", function () {
         document.getElementById('notificationContainer').style.display = 'none';
-        registerButton.style.display = 'block';
-        okButton.style.display = 'none';
     });
 });
 
