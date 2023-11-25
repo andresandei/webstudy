@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("registrationForm").addEventListener("submit", function (event) {
+    var registrationForm = document.getElementById("registrationForm");
+    var registerButton = document.getElementById("registerButton");
+    var okButton = document.getElementById("okButton");
+
+    registrationForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
         // Get form data
@@ -16,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Display "Cadastrando..." message immediately
         displayNotification("processing", "Cadastrando...");
 
+        // Hide the Register button during processing
+        registerButton.style.display = 'none';
+
         // Use fetch to send data to the server
         fetch("register.php", {
             method: "POST",
@@ -25,9 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             try {
                 var jsonData = JSON.parse(data);
-        
+
                 // Update the notification content and style based on the status
                 displayNotification(jsonData.status, jsonData.message);
+
+                // If successful, hide the OK button and show the Register button again
+                if (jsonData.status === 'success') {
+                    okButton.style.display = 'block';
+                    registerButton.style.display = 'none';
+                }
             } catch (error) {
                 console.error('Error parsing JSON:', error);
             }
@@ -35,9 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error('Error:', error));
     });
 
-    // OK button click event to hide the notification
-    document.getElementById("okButton").addEventListener("click", function () {
+    // OK button click event to hide the notification and show the Register button
+    okButton.addEventListener("click", function () {
         document.getElementById('notificationContainer').style.display = 'none';
+        registerButton.style.display = 'block';
+        okButton.style.display = 'none';
     });
 });
 
@@ -53,6 +68,8 @@ function displayNotification(status, message) {
         notificationContainer.classList.add('success');
     } else if (status === 'error') {
         notificationContainer.classList.add('error');
+    } else if (status === 'processing') {
+        notificationContainer.classList.add('processing');
     }
 
     // Display the notification
