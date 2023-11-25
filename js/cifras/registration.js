@@ -3,8 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var registerButton = document.getElementById("registerButton");
     var okButton = document.getElementById("okButton");
 
+    // Hide the Register button during processing
+    registerButton.style.display = 'none';
+
     registrationForm.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
+
+        // Hide the Register button during processing
+        registerButton.style.display = 'none';
 
         // Get form data
         var itemName = document.getElementById("itemName").value;
@@ -19,9 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Display "Cadastrando..." message immediately
         displayNotification("processing", "Cadastrando...");
-
-        // Hide the Register button during processing
-        registerButton.style.display = 'none';
 
         // Use fetch to send data to the server
         fetch("register.php", {
@@ -39,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 // If successful, hide the OK button and show the Register button again
                 if (jsonData.status === 'success') {
                     okButton.style.display = 'block';
-                    registerButton.style.display = 'none';
                 }
             } catch (error) {
                 console.error('Error parsing JSON:', error);
