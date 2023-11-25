@@ -72,11 +72,4 @@ function displayNotification(status, message) {
 
     // Display the notification
     notificationContainer.style.display = 'block';
-
-    // If successful, hide the notification after a few seconds
-    if (status === 'success') {
-        setTimeout(function () {
-            notificationContainer.style.display = 'none';
-        }, 3000); // 3 seconds
-    }
 }
