@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Check if image type is allowed
         if (!isImageTypeAllowed(itemImage)) {
-            displayNotification("error", "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+            // Display error notification immediately
+            displayNotification('error', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
             return; // Stop further processing
         }
 
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 var jsonData = JSON.parse(data);
 
-                // Update the notification content and style based on the status
+                // Update the notification content and style based on the status and message
                 displayNotification(jsonData.status, jsonData.message);
 
                 // If successful, show the OK button
@@ -66,3 +67,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return allowedFormats.includes(imageFileType);
     }
 });
+
+function displayNotification(status, message) {
+    var notificationContainer = document.getElementById('notificationContainer');
+    var notificationContent = document.getElementById('notificationContent');
+
+    // Set the content and style based on the status
+    notificationContent.innerHTML = message;
+    notificationContainer.className = ''; // Clear existing classes
+
+    if (status === 'success') {
+        notificationContainer.classList.add('success');
+    } else if (status === 'error') {
+        notificationContainer.classList.add('error');
+    } else if (status === 'processing') {
+        notificationContainer.classList.add('processing');
+    }
+
+    // Display the notification
+    notificationContainer.style.display = 'flex';
+}
