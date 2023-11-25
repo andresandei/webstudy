@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Update the notification content and style based on the status
                 displayNotification(jsonData.status, jsonData.message);
 
-                // If successful, show the OK button again
+                // If successful, show the OK button
                 if (jsonData.status === 'success') {
                     okButton.style.display = 'block';
                 }
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // OK button click event to hide the notification
     okButton.addEventListener("click", function () {
         document.getElementById('notificationContainer').style.display = 'none';
+        // You can add any additional logic here, such as redirecting to the list page
     });
 });
 
