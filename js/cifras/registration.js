@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("registrationForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault(); // Evita o envio padrão do formulário
 
         // Get form data
         var itemName = document.getElementById("itemName").value;
-        var itemImage = document.getElementById("itemImage").files[0]; // File input
+        var itemImage = document.getElementById("itemImage").files[0]; // Arquivo do input
         var itemTono = document.getElementById("itemTono").value;
 
         // Create FormData object to send files
@@ -18,20 +18,21 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             body: formData
         })
-        .then(response => response.text()) // Convert response to text
+        .then(response => response.text()) // Converte a resposta para texto
         .then(data => {
-            console.log(data);  // Log the raw response text
+            console.log(data);  // Log da resposta bruta
 
             try {
                 var jsonData = JSON.parse(data);
-        
-                // Display the notification
+                
+                // Exibe a notificação
                 displayNotification(jsonData.status, jsonData.message);
+
             } catch (error) {
-                console.error('Error parsing JSON:', error);
+                console.error('Erro ao analisar JSON:', error);
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Erro:', error));
     });
 });
 
@@ -40,30 +41,31 @@ function displayNotification(status, message) {
     var notificationContent = document.getElementById('notificationContent');
     var okButton = document.getElementById('okButton');
 
-    // Set the content and style based on the status
-    notificationContent.innerHTML = message;
-    notificationContainer.className = ''; // Clear existing classes
+    // Defina o conteúdo e o estilo com base no status...
 
+    // Exibe a notificação
+    notificationContainer.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Se o status for "success", altera o texto para "Completo" e exibe o botão OK
     if (status === 'success') {
-        notificationContainer.classList.add('success');
-    } else if (status === 'error') {
-        notificationContainer.classList.add('error');
+        notificationContent.innerHTML = 'Completo';
+        okButton.style.display = 'block';
+    } else {
+        // Caso contrário, mantém o texto original
+        notificationContent.innerHTML = message;
+        okButton.style.display = 'none';
     }
 
-    // Display the notification
-    notificationContainer.style.display = 'flex'; // Change to 'block' if you prefer
-    document.body.style.overflow = 'hidden'; // Prevent scrolling behind the notification
-
-    // Attach event listener to the OK button
+    // Atacha o evento de clique ao botão OK
     okButton.addEventListener('click', function () {
         closeNotification(notificationContainer);
     });
 }
 
-function closeNotification(notificationContainer) {
-    // Hide the notification
-    notificationContainer.style.display = 'none';
-    document.body.style.overflow = ''; // Restore scrolling
+function closeNotification(container) {
+    container.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 //TODO: Make a feedback of the registering process
