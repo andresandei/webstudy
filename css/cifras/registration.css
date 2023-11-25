@@ -1,80 +1,55 @@
 body {
-    font-family: 'Arial', sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
 }
 
 #registrationContainer {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
     text-align: center;
-    color: #333;
+    padding: 20px;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-label {
-    margin: 10px 0;
-    font-weight: bold;
-    color: #333;
-}
-
-input {
+#notificationContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    height: 100%;
+    background-color: rgba(0, 0, 255, 0.8); /* Blue background with transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-button {
-    background-color: #3498db;
-    color: #fff;
+#notificationContent {
+    text-align: center;
+    color: #fff; /* White text color */
+}
+
+.loading-image {
+    width: 50px; /* Adjust the size of the loading image */
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+#okButton {
     padding: 10px 20px;
+    background-color: #4CAF50; /* Green color for OK button */
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #2980b9;
-}
-
-#notificationContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    display: none;
+#okButton:hover {
+    background-color: #45a049;
 }
 
 .hidden {
     display: none;
-}
-
-#notificationContainer.success {
-    border-color: #4CAF50;
-    background-color: #dff0d8;
-    color: #4CAF50;
-}
-
-#notificationContainer.error {
-    border-color: #d9534f;
-    background-color: #f2dede;
-    color: #d9534f;
 }

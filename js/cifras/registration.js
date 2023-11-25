@@ -23,9 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(data);  // Log the raw response text
 
             try {
+                // Try to parse the response as JSON
                 var jsonData = JSON.parse(data);
-        
-                // Display the notification
+                console.log(jsonData);  // Log the parsed JSON data
+
+                // Display the full-screen notification
                 displayNotification(jsonData.status, jsonData.message);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
@@ -37,25 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function displayNotification(status, message) {
     var notificationContainer = document.getElementById('notificationContainer');
-    var notificationContent = document.getElementById('notificationContent');
+    var notificationMessage = document.getElementById('notificationMessage');
 
     // Set the content and style based on the status
-    notificationContent.innerHTML = message;
-    notificationContainer.className = ''; // Clear existing classes
-
-    if (status === 'success') {
-        notificationContainer.classList.add('success');
-    } else if (status === 'error') {
-        notificationContainer.classList.add('error');
-    }
+    notificationMessage.innerHTML = message;
 
     // Display the notification
-    notificationContainer.style.display = 'block';
+    notificationContainer.classList.remove('hidden');
 
-    // Hide the notification after a few seconds (adjust as needed)
-    setTimeout(function () {
-        notificationContainer.style.display = 'none';
-    }, 3000); // 3 seconds
+    // Focus on the OK button for accessibility
+    document.getElementById('okButton').focus();
+}
+
+function returnToListPage() {
+    // Redirect to the list page (adjust the URL as needed)
+    window.location.href = 'list-page.html';
 }
 
 //TODO: Make a feedback of the registering process

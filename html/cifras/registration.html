@@ -24,8 +24,13 @@
         </form>
     </div>
 
+    <!-- Full-Screen Notification -->
     <div id="notificationContainer" class="hidden">
-        <div id="notificationContent"></div>
+        <div id="notificationContent">
+            <img src="loading.gif" alt="Loading" class="loading-image">
+            <p id="notificationMessage"></p>
+            <button id="okButton" onclick="returnToListPage()">OK</button>
+        </div>
     </div>
 </body>
 </html>
