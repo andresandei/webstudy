@@ -52,7 +52,7 @@ if ($itemImage['size'] > 500000) {
 }
 
 // Allow certain file formats
-$allowedFormats = array("jpg", "jpeg", "png", "gif");
+$allowedFormats = array("jpg", "jpeg", "png", "gif","HEIF");
 if (!in_array($imageFileType, $allowedFormats)) {
     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     $uploadOk = 0;
