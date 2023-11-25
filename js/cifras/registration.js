@@ -23,11 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(data);  // Log the raw response text
 
             try {
-                // Try to parse the response as JSON
                 var jsonData = JSON.parse(data);
-                console.log(jsonData);  // Log the parsed JSON data
-
-                // Handle the response from the server
+        
+                // Display the notification
+                displayNotification(jsonData.status, jsonData.message);
             } catch (error) {
                 console.error('Error parsing JSON:', error);
             }
@@ -35,6 +34,29 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error('Error:', error));
     });
 });
+
+function displayNotification(status, message) {
+    var notificationContainer = document.getElementById('notificationContainer');
+    var notificationContent = document.getElementById('notificationContent');
+
+    // Set the content and style based on the status
+    notificationContent.innerHTML = message;
+    notificationContainer.className = ''; // Clear existing classes
+
+    if (status === 'success') {
+        notificationContainer.classList.add('success');
+    } else if (status === 'error') {
+        notificationContainer.classList.add('error');
+    }
+
+    // Display the notification
+    notificationContainer.style.display = 'block';
+
+    // Hide the notification after a few seconds (adjust as needed)
+    setTimeout(function () {
+        notificationContainer.style.display = 'none';
+    }, 3000); // 3 seconds
+}
 
 //TODO: Make a feedback of the registering process
 //TODO: Make a way to add more than 1 image
