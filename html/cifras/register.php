@@ -14,6 +14,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+function isImageTypeAllowed($file) {
+    $allowedFormats = ["jpg", "jpeg", "png", "gif", "heif"];
+    $imageFileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    return in_array($imageFileType, $allowedFormats);
+}
+
 // Handle form data
 $itemName = $_POST['itemName'];
 $itemImages = $_FILES['itemImages'];
@@ -31,7 +37,7 @@ for ($i = 0; $i < count($itemImages['name']); $i++) {
 
     // Check if image type is allowed
     if (!isImageTypeAllowed($currentImage)) {
-        echo json_encode(array("status" => "error", "message" => "Sorry, only JPG, JPEG, PNG & GIF files are allowed."));
+        echo json_encode(array("status" => "error", "message" => "Sorry, only JPG, JPEG, PNG, GIF & HEIF files are allowed."));
         exit;
     }
 
