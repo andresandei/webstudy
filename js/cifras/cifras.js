@@ -60,6 +60,7 @@ fetch('cifras.php')
 // Display data in the HTML
 function displayData(data) {
     var musicList = document.getElementById('musicList');
+    musicList.innerHTML = '';
     data.forEach(function (user) {
         
         var userDiv = document.createElement('div');
