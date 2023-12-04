@@ -57,9 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 displayNotification(jsonData.status, jsonData.message);
 
-                if (jsonData.status === 'success') {
-                    okButton.style.display = 'block';
-                }
+                okButton.style.display = 'block';
             } catch (error) {
                 console.error('Error parsing JSON:', error);
             }
