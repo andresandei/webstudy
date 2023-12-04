@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Get form data
         var itemName = document.getElementById("itemName").value;
         var itemImages = document.getElementById("itemImages").files;
+        var itemTono = document.getElementById("itemTono").value;
 
         for (var i = 0; i < itemImages.length; i++) {
             var currentItem = itemImages[i];
