@@ -48,7 +48,7 @@ function displayData(data) {
         
         var userDiv = document.createElement('div');
         userDiv.classList.add('music-item');
-        userDiv.innerHTML = 'ID: ' + user.id + '<br>Name: ' + user.nome + '<br>Email: ' + user.path;
+        userDiv.innerHTML = 'Name: ' + user.nome + '<br>Tono: ' + user.tom;
 
         // Add a click event listener to each user item
         userDiv.addEventListener('click', function () {
