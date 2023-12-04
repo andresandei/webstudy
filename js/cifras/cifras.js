@@ -48,7 +48,7 @@ function displayData(data) {
         
         var userDiv = document.createElement('div');
         userDiv.classList.add('music-item');
-        userDiv.innerHTML = 'Name: ' + user.nome + '<br>Tono: ' + user.tom;
+        userDiv.innerHTML = user.nome + user.tom;
 
         // Add a click event listener to each user item
         userDiv.addEventListener('click', function () {
@@ -102,3 +102,19 @@ function closeFullscreen(element) {
         document.msExitFullscreen();
     }
 }
+
+document.getElementById('searchInput').addEventListener('input', function () {
+    // Get the search input value
+    var searchValue = this.value.toLowerCase();
+
+    // Filter music data based on the search value
+    var filteredData = userDataArray.filter(function (music) {
+        return (
+            music.nome.toLowerCase().includes(searchValue) ||
+            music.tom.toLowerCase().includes(searchValue)
+        );
+    });
+
+    // Display filtered data
+    displayData(filteredData);
+});
