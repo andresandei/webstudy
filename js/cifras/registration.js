@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isImageTypeAllowed(currentItem)) {
                 // Display error notification immediately
                 displayNotification('error', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
+                okButton.style.display = 'block';
                 return; // Stop further processing
             }
 
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isImageSizeAllowed(currentItem)) {
                 // Display error notification immediately
                 displayNotification('error', 'Sorry, your file is too large.');
+                okButton.style.display = 'block';
                 return; // Stop further processing
             }
 
