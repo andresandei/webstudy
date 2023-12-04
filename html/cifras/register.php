@@ -81,7 +81,7 @@ for ($i = 0; $i < count($itemImages['name']); $i++) {
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo json_encode(array("status" => "error", "message" => "Sorry, file already exists"));
+        echo json_encode(array("status" => "error", "message" => "Sorry, file already exists."));
         exit;
     }
 
