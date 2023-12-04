@@ -20,6 +20,12 @@ function isImageTypeAllowed($file) {
     return in_array($imageFileType, $allowedFormats);
 }
 
+function isImageSizeAllowed($file) {
+    // Adjust the maximum allowed size (in bytes) as needed
+    $maxSize = 500000; // 500 KB
+    return $file && $file['size'] <= $maxSize;
+}
+
 // Handle form data
 $itemName = $_POST['itemName'];
 $itemImages = $_FILES['itemImages'];
