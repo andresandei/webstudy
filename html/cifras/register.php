@@ -24,6 +24,11 @@ $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
 $lastresult = $conn->query($lastsql);
 $row = mysqli_fetch_row($lastresult);
 
+if ($row[0] != null) {
+    $summed = 0;
+} else {
+    $summed = $row[0] + 1;
+}
 $summed = $row[0] + 1;
 $target_dir = "../../img/cifras/";
 $uploadOk = 1;
