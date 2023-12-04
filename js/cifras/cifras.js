@@ -24,6 +24,22 @@ document.addEventListener("readystatechange", (event) => {
             popupPanel.style.display = 'none';
         }
     });
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+        // Get the search input value
+        var searchValue = this.value.toLowerCase();
+    
+        // Filter music data based on the search value
+        var filteredData = userDataArray.filter(function (music) {
+            return (
+                music.nome.toLowerCase().includes(searchValue) ||
+                music.tom.toLowerCase().includes(searchValue)
+            );
+        });
+    
+        // Display filtered data
+        displayData(filteredData);
+    });
 });
 
 // Initialize an empty array to store user data
@@ -103,18 +119,3 @@ function closeFullscreen(element) {
     }
 }
 
-document.getElementById('searchInput').addEventListener('input', function () {
-    // Get the search input value
-    var searchValue = this.value.toLowerCase();
-
-    // Filter music data based on the search value
-    var filteredData = userDataArray.filter(function (music) {
-        return (
-            music.nome.toLowerCase().includes(searchValue) ||
-            music.tom.toLowerCase().includes(searchValue)
-        );
-    });
-
-    // Display filtered data
-    displayData(filteredData);
-});
