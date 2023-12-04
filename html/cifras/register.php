@@ -29,6 +29,20 @@ $target_dir = "../../img/cifras/";
 $uploadOk = 1;
 $imagePaths = array(); // Array to store image paths
 
+// Function to check if the image type is allowed
+function isImageTypeAllowed($file) {
+    $allowedFormats = ["jpg", "jpeg", "png", "gif", "heif"];
+    $imageFileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    return in_array($imageFileType, $allowedFormats);
+}
+
+// Function to check if the image size is allowed
+function isImageSizeAllowed($file) {
+    // Adjust the maximum allowed size (in bytes) as needed
+    $maxSize = 500000; // 500 KB
+    return $file && $file['size'] <= $maxSize;
+}
+
 // Loop through each image
 for ($i = 0; $i < count($itemImages['name']); $i++) {
     $currentImage = array(
