@@ -1,8 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // Exit or redirect if accessed directly
-    exit('Direct access not allowed');
-}
 // register.php
 
 // Assuming you have a MySQL database
