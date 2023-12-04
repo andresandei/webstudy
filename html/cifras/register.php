@@ -16,67 +16,100 @@ if ($conn->connect_error) {
 
 // Handle form data
 $itemName = $_POST['itemName'];
-$itemImage = $_FILES['itemImage'];
+$itemImages = $_FILES['itemImages'];
 $itemTono = $_POST['itemTono'];
 
+// Loop through each image
+for ($i = 0; $i < count($itemImages['name']); $i++) {
+    $currentImage = array(
+        'name' => $itemImages['name'][$i],
+        'type' => $itemImages['type'][$i],
+        'tmp_name' => $itemImages['tmp_name'][$i],
+        'error' => $itemImages['error'][$i],
+        'size' => $itemImages['size'][$i]
+    );
+
+    // Check if image type is allowed
+    if (!isImageTypeAllowed($currentImage)) {
+        echo json_encode(array("status" => "error", "message" => "Sorry, only JPG, JPEG, PNG & GIF files are allowed."));
+        exit;
+    }
+
+    // Check if image size is within the allowed limit
+    if (!isImageSizeAllowed($currentImage)) {
+        echo json_encode(array("status" => "error", "message" => "Sorry, your file is too large."));
+        exit;
+    }
+
+    // Continue with the rest of the processing for this image...
+}
+
+// Handle image upload
 $lastsql = "SELECT id from musicas ORDER BY id DESC LIMIT 1;";
 $lastresult = $conn->query($lastsql);
 $row = mysqli_fetch_row($lastresult);
 
-// Handle image upload
 $summed = $row[0] + 1;
-$target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
-$target_file = $target_dir . basename($itemImage['name']);
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-$filenameR = "img" . $summed . "-" . "0." . $imageFileType;
-$targetFile = $target_dir . $filenameR; // Unique file name
+$target_dir = "../../img/cifras/";
 $uploadOk = 1;
 
-// Check if image file is a actual image or fake image
-$check = getimagesize($itemImage['tmp_name']);
-if ($check === false) {
-    echo "File is not an image.";
-    $uploadOk = 0;
-}
+// Loop through each image
+for ($i = 0; $i < count($itemImages['name']); $i++) {
+    $currentImage = array(
+        'name' => $itemImages['name'][$i],
+        'type' => $itemImages['type'][$i],
+        'tmp_name' => $itemImages['tmp_name'][$i],
+        'error' => $itemImages['error'][$i],
+        'size' => $itemImages['size'][$i]
+    );
 
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+    $target_file = $target_dir . basename($currentImage['name']);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $filenameR = "img" . $summed . "-" . $i . "." . $imageFileType;
+    $targetFile = $target_dir . $filenameR;
 
-// Check file size
-if ($itemImage['size'] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo json_encode(array("status" => "error", "message" => "Sorry, file already exists."));
+        exit;
+    }
 
-// Allow certain file formats
-$allowedFormats = array("jpg", "jpeg", "png", "gif","HEIF");
-if (!in_array($imageFileType, $allowedFormats)) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
+    // Check if image file is a valid image
+    $check = getimagesize($currentImage['tmp_name']);
+    if ($check === false) {
+        echo json_encode(array("status" => "error", "message" => "File is not an image."));
+        exit;
+    }
 
-if ($uploadOk == 0) {
-    $response = array("status" => "error", "message" => "Sorry, your file was not uploaded.");
-} else {
-    if (move_uploaded_file($itemImage['tmp_name'], $targetFile)) {
+    // Check file size
+    if ($currentImage['size'] > 500000) {
+        echo json_encode(array("status" => "error", "message" => "Sorry, your file is too large."));
+        exit;
+    }
+
+    // Allow certain file formats
+    $allowedFormats = array("jpg", "jpeg", "png", "gif", "heif");
+    if (!in_array($imageFileType, $allowedFormats)) {
+        echo json_encode(array("status" => "error", "message" => "Sorry, only JPG, JPEG, PNG, GIF & HEIF files are allowed."));
+        exit;
+    }
+
+    if (move_uploaded_file($currentImage['tmp_name'], $targetFile)) {
         // File uploaded successfully
-        $response = array("status" => "success", "message" => "The file " . basename($itemImage['name']) . " has been uploaded.");
+        $response = array("status" => "success", "message" => "The file " . basename($currentImage['name']) . " has been uploaded.");
     } else {
         // Error uploading file
         $response = array("status" => "error", "message" => "Sorry, there was an error uploading your file.");
+        exit;
     }
-}
 
-// Insert data into the database
-$sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$itemName', '$filenameR', '$itemTono')";
+    // Insert data into the database
+    $sql = "INSERT INTO musicas (nome, path, tom) VALUES ('$itemName', '$filenameR', '$itemTono')";
 
-if ($conn->query($sql) === TRUE) {
-    $response = array("status" => "success", "message" => "Item registered successfully");
-} else {
-    $response = array("status" => "error", "message" => "Error: " . $sql . "<br>" . $conn->error);
+    if ($conn->query($sql) !== TRUE) {
+        $response = array("status" => "error", "message" => "Error: " . $sql . "<br>" . $conn->error);
+        exit;
+    }
 }
 
 // Close the connection

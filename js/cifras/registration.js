@@ -11,39 +11,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Get form data
         var itemName = document.getElementById("itemName").value;
-        var itemImage = document.getElementById("itemImage").files[0]; // File input
-        var itemTono = document.getElementById("itemTono").value;
+        var itemImages = document.getElementById("itemImages").files;
 
-        // Check if image type is allowed
-        if (!isImageTypeAllowed(itemImage)) {
-            // Display error notification immediately
-            displayNotification('error', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
-            return; // Stop further processing
+        for (var i = 0; i < itemImages.length; i++) {
+            var currentItem = itemImages[i];
+
+            // Check if image type is allowed
+            if (!isImageTypeAllowed(currentItem)) {
+                // Display error notification immediately
+                displayNotification('error', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
+                return; // Stop further processing
+            }
+
+            // Check if image size is within the allowed limit
+            if (!isImageSizeAllowed(currentItem)) {
+                // Display error notification immediately
+                displayNotification('error', 'Sorry, your file is too large.');
+                return; // Stop further processing
+            }
+
+            // Continue with the rest of the processing for this file...
         }
 
-        // Create FormData object to send files
+        // Rest of the form submission logic remains the same
         var formData = new FormData();
         formData.append("itemName", itemName);
-        formData.append("itemImage", itemImage);
+
+        for (var i = 0; i < itemImages.length; i++) {
+            formData.append("itemImages[]", itemImages[i]);
+        }
+
         formData.append("itemTono", itemTono);
 
-        // Display "Cadastrando..." message immediately
         displayNotification("processing", "Cadastrando...");
 
-        // Use fetch to send data to the server
         fetch("register.php", {
             method: "POST",
             body: formData
         })
-        .then(response => response.text()) // Convert response to text
+        .then(response => response.text())
         .then(data => {
             try {
                 var jsonData = JSON.parse(data);
 
-                // Update the notification content and style based on the status and message
                 displayNotification(jsonData.status, jsonData.message);
 
-                // If successful, show the OK button
                 if (jsonData.status === 'success') {
                     okButton.style.display = 'block';
                 }
@@ -51,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error parsing JSON:', error);
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => ErrorDealing(error));
     });
 
     // OK button click event to hide the notification
@@ -60,30 +72,43 @@ document.addEventListener("DOMContentLoaded", function () {
         // You can add any additional logic here, such as redirecting to the list page
     });
 
+    function ErrorDealing(error) {
+        console.error('Error:', error)
+        if (error == "Sorry, your file is too large.") {
+            // Handle specific error if needed
+        }
+    }
+
     // Function to check if the image type is allowed
     function isImageTypeAllowed(file) {
         var allowedFormats = ["jpg", "jpeg", "png", "gif"];
         var imageFileType = file.name.split('.').pop().toLowerCase();
         return allowedFormats.includes(imageFileType);
     }
-});
 
-function displayNotification(status, message) {
-    var notificationContainer = document.getElementById('notificationContainer');
-    var notificationContent = document.getElementById('notificationContent');
-
-    // Set the content and style based on the status
-    notificationContent.innerHTML = message;
-    notificationContainer.className = ''; // Clear existing classes
-
-    if (status === 'success') {
-        notificationContainer.classList.add('success');
-    } else if (status === 'error') {
-        notificationContainer.classList.add('error');
-    } else if (status === 'processing') {
-        notificationContainer.classList.add('processing');
+    function isImageSizeAllowed(file) {
+        // Adjust the maximum allowed size (in bytes) as needed
+        var maxSize = 500000; // 500 KB
+        return file && file['size'] <= maxSize;
     }
 
-    // Display the notification
-    notificationContainer.style.display = 'flex';
-}
+    function displayNotification(status, message) {
+        var notificationContainer = document.getElementById('notificationContainer');
+        var notificationContent = document.getElementById('notificationContent');
+
+        // Set the content and style based on the status
+        notificationContent.innerHTML = message;
+        notificationContainer.className = ''; // Clear existing classes
+
+        if (status === 'success') {
+            notificationContainer.classList.add('success');
+        } else if (status === 'error') {
+            notificationContainer.classList.add('error');
+        } else if (status === 'processing') {
+            notificationContainer.classList.add('processing');
+        }
+
+        // Display the notification
+        notificationContainer.style.display = 'flex';
+    }
+});
