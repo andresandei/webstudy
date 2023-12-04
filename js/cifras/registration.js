@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // OK button click event to hide the notification
     okButton.addEventListener("click", function () {
-        document.getElementById('notificationContainer').style.display = 'none';
+        window.open("cifras.html","_self")
         // You can add any additional logic here, such as redirecting to the list page
     });
 
