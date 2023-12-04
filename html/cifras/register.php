@@ -29,12 +29,9 @@ if ($lastresult && $lastresult->num_rows > 0) {
 
     // Handle image upload using the fetched value
     $summed = $row[0] + 1;
-    $target_dir = "../../img/cifras/"; // Create an "uploads" folder in your project
-    // ... existing code ...
 } else {
     // Handle the case when there are no rows in the result set
     $summed = 1; // Set a default value or take another appropriate action
-    // ... existing code ...
 }
 
 $target_dir = "../../img/cifras/";
