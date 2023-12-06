@@ -55,13 +55,14 @@ body {
     margin: 10px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: x-large;
     position: relative;
-    display: flex; /* Ensure it's a flex container */
-    align-items: center; /* Center items horizontally */
 }
+
 
 .music-infos {
     width: 300px;
