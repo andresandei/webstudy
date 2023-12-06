@@ -64,11 +64,11 @@ function displayData(data) {
     data.forEach(function (user) {
         var userInfos = document.createElement('div');
         userInfos.classList.add('music-infos');
-        
+
         var userDiv = document.createElement('div');
         
         userDiv.classList.add('music-item');
-        userDiv.innerHTML = user.nome + user.tom;
+        userDiv.innerHTML = user.nome + '<br>' + user.tom;
 
         // Add a delete button
         var deleteButton = document.createElement('button');
