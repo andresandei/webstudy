@@ -165,9 +165,9 @@ body {
 
 /* Updated styles for delete button */
 .delete-button {
-    height: 40%;
+    width: 40px; /* Set a fixed width to keep it round */
+    height: 40px; /* Set a fixed height to keep it round */
     background-color: #e74c3c; /* Red background color */
-    padding: 8px 16px; /* Padding for better spacing */
     border: none;
     border-radius: 50%; /* Ensure the button is always rounded */
     cursor: pointer;
