@@ -87,7 +87,7 @@ function displayData(data) {
 }
 
 function openPopup(imgs) {
-    document.getElementById('musicList').style.overflowY = "hidden"
+    document.body.style.overflowY = "hidden"
 
     // Clear previous images
     userImageContainer.innerHTML = '';
@@ -163,7 +163,7 @@ function openFullscreen(element) {
 
 // Exit full screen
 function closeFullscreen(element) {
-    document.getElementById('musicList').style.overflowY = "scroll"
+    document.body.style.overflowY = "scroll"
 
     if (document.exitFullscreen) {
         document.exitFullscreen();
