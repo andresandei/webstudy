@@ -142,3 +142,49 @@ body {
 #searchButton:hover {
     background-color: #2980b9;
 }
+
+.delete-button {
+    background-color: #e74c3c; /* Red background color */
+    color: #fff; /* White text color */
+    padding: 8px 16px; /* Padding for better spacing */
+    border: none;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* White stripe in the center */
+.delete-button::before,
+.delete-button::after {
+    content: "";
+    display: block;
+    width: 8px; /* Width of the stripe */
+    height: 2px; /* Height of the stripe */
+    background-color: #fff; /* White color */
+    position: absolute;
+}
+
+.delete-button::before {
+    transform: rotate(45deg); /* Diagonal stripe */
+}
+
+.delete-button::after {
+    transform: rotate(-45deg); /* Diagonal stripe */
+}
+
+/* Center the stripe */
+.delete-button::before,
+.delete-button::after {
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    margin-top: -1px; /* Half of the height */
+    margin-left: -4px; /* Half of the width */
+}
