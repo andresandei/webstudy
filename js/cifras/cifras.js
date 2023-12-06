@@ -69,7 +69,6 @@ function displayData(data) {
 
         // Add a delete button
         var deleteButton = document.createElement('button');
-        deleteButton.innerHTML = 'Delete';
         deleteButton.classList.add('delete-button'); // Add this line to apply the new styles
         deleteButton.addEventListener('click', function () {
             // Call the deleteItem function with user details
