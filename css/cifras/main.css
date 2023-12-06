@@ -53,14 +53,14 @@ body {
     height: 95%;
     padding: 15px;
     margin: 10px;
-    background-color: #f9f9f9; /* Background color for each item */
+    background-color: #f9f9f9;
     border-radius: 8px;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     font-size: x-large;
     position: relative;
-    align-items: center;
-    display: flex;
+    display: flex; /* Ensure it's a flex container */
+    align-items: center; /* Center items horizontally */
 }
 
 .music-infos {
@@ -165,8 +165,8 @@ body {
 
 /* Updated styles for delete button */
 .delete-button {
-    width: 40px; /* Set a fixed width to keep it round */
-    height: 40px; /* Set a fixed height to keep it round */
+    width: 50px;
+    height: 37px;
     background-color: #e74c3c; /* Red background color */
     border: none;
     border-radius: 50%; /* Ensure the button is always rounded */
