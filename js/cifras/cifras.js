@@ -62,8 +62,9 @@ function displayData(data) {
     var musicList = document.getElementById('musicList');
     musicList.innerHTML = '';
     data.forEach(function (user) {
-        
+        var userInfos = document.createElement('div');
         var userDiv = document.createElement('div');
+        
         userDiv.classList.add('music-item');
         userDiv.innerHTML = user.nome + user.tom;
 
@@ -76,7 +77,8 @@ function displayData(data) {
         });
 
         // Append the delete button to the item
-        userDiv.appendChild(deleteButton);
+        userInfos.appendChild(userDiv);
+        userInfos.appendChild(deleteButton);
 
         // Add a click event listener to each user item
         userDiv.addEventListener('click', function () {
