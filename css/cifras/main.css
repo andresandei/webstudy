@@ -59,6 +59,10 @@ body {
     font-size: x-large;
 }
 
+.music-infos {
+    width: auto;
+}
+
 .overlay {
     display: none;
     position: fixed;

@@ -63,6 +63,8 @@ function displayData(data) {
     musicList.innerHTML = '';
     data.forEach(function (user) {
         var userInfos = document.createElement('div');
+        userInfos.classList.add('music-infos');
+        
         var userDiv = document.createElement('div');
         
         userDiv.classList.add('music-item');
