@@ -86,7 +86,7 @@ function displayData(data) {
             openPopup(user.path);
         });
 
-        musicList.appendChild(userDiv);
+        musicList.appendChild(userInfos);
     });
 }
 
