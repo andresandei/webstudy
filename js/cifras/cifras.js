@@ -4,12 +4,6 @@ document.addEventListener("readystatechange", (event) => {
     var popupPanel = document.getElementById('popupPanel');
     var closeBtn = document.getElementById('closeBtn');
 
-    popupTrigger.addEventListener('click', function () {
-        openFullscreen(popupPanel);
-        popupOverlay.style.display = 'flex';
-        popupPanel.style.display = 'block';
-    });
-
     closeBtn.addEventListener('click', function () {
         closeFullscreen(popupPanel);
         popupOverlay.style.display = 'none';
@@ -93,6 +87,8 @@ function displayData(data) {
 }
 
 function openPopup(imgs) {
+    document.getElementById('musicList').style.overflowY = "hidden"
+
     // Clear previous images
     userImageContainer.innerHTML = '';
     let imgsArr = imgs.split("*");
@@ -167,6 +163,8 @@ function openFullscreen(element) {
 
 // Exit full screen
 function closeFullscreen(element) {
+    document.getElementById('musicList').style.overflowY = "scroll"
+
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) {
