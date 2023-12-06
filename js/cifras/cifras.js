@@ -60,12 +60,22 @@ fetch('cifras.php')
 // Display data in the HTML
 function displayData(data) {
     var musicList = document.getElementById('musicList');
-    musicList.innerHTML = '';
     data.forEach(function (user) {
         
         var userDiv = document.createElement('div');
         userDiv.classList.add('music-item');
-        userDiv.innerHTML = user.nome + '<br>' +  user.tom;
+        userDiv.innerHTML = user.nome + user.tom;
+
+        // Add a delete button
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = 'Delete';
+        deleteButton.addEventListener('click', function () {
+            // Call the deleteItem function with user details
+            deleteItem(user.id, user.path);
+        });
+
+        // Append the delete button to the item
+        userDiv.appendChild(deleteButton);
 
         // Add a click event listener to each user item
         userDiv.addEventListener('click', function () {
@@ -93,6 +103,49 @@ function openPopup(imgs) {
 
     popupOverlay.style.display = 'flex';
     popupPanel.style.display = 'block';
+}
+
+function deleteItem(itemId, imagePath) {
+    // Confirm deletion
+    if (confirm('Are you sure you want to delete this item?')) {
+        // Use fetch to call the PHP script for deletion
+        fetch('delete.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: itemId,
+                path: imagePath,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response (success or error)
+            if (data.status === 'success') {
+                // Reload the data after deletion
+                fetchDataAndDisplay();
+            } else {
+                // Display an error message
+                alert('Error deleting item: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+
+// Function to fetch data and display it
+function fetchDataAndDisplay() {
+    fetch('cifras.php')
+        .then(response => response.json())
+        .then(data => {
+            // Store data in the JavaScript array
+            userDataArray = data;
+
+            // Display data in the HTML
+            displayData(userDataArray);
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 function openFullscreen(element) {
